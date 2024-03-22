@@ -13,27 +13,27 @@
     <div>
         <img src="logo.png" alt="Okul Logosu" width="100">
         <h1>ELAZIĞ LİSESİ YAPAY ZEKA TAKIMI</h1>
-	<p>KOLON KANSERİNE ERKEN TEŞHİS İÇİN YAPAY ZEKA TABANLI DESTEK SİSTEMİ</p>
+        <p>KOLON KANSERİNE ERKEN TEŞHİS İÇİN YAPAY ZEKA TABANLI DESTEK SİSTEMİ</p>
     </div>
 </center>
-	<p>Lütfen cihazınızın ön kamerasını tahminde bulunacağınız görüntüye tutunuz.</p>
-    <script type="text/javascript">
-      // Classifier Variable
-      let classifier;
-      // Model URL
-      let imageModelURL = 'https://teachablemachine.withgoogle.com/models/Qd-YuOO4H/';
-      
-      // Video
-      let video;
-      // To store the classification
-      let label = "";
+<p>Lütfen cihazınızın ön kamerasını tahminde bulunacağınız görüntüye tutunuz.</p>
+<script type="text/javascript">
+    // Classifier Variable
+    let classifier;
+    // Model URL
+    let imageModelURL = 'https://teachablemachine.withgoogle.com/models/ncUOFtQCp/';
 
-      // Load the model first
-      function preload() {
+    // Video
+    let video;
+    // To store the classification
+    let label = "";
+
+    // Load the model first
+    function preload() {
         classifier = ml5.imageClassifier(imageModelURL + 'model.json');
-      }
+    }
 
-      function setup() {
+    function setup() {
         createCanvas(320, 240);
         // Create the video
         video = createCapture(VIDEO);
@@ -41,39 +41,47 @@
         video.hide();
         // Start classifying
         classifyVideo();
-      }
+    }
 
-      function draw() {
+    function draw() {
         background(0);
         // Draw the video
         image(video, 0, 0, width, height);
 
+        // Set the text color based on the label
+        if (label === "Kanserli") {
+            fill(255, 0, 0); // Kırmızı renk
+        } else if (label === "Normal") {
+            fill(0, 255, 0); // Yeşil renk
+        } else {
+            fill(255); // Beyaz renk
+        }
+
         // Draw the label
-        fill(255);
         textSize(16);
         textAlign(CENTER);
         text(label, width / 2, height - 4);
-      }
+    }
 
-      // Get a prediction for the current video frame
-      function classifyVideo() {
+    // Get a prediction for the current video frame
+    function classifyVideo() {
         classifier.classify(video, gotResult);
-      }
+    }
 
-      // When we get a result
-      function gotResult(error, results) {
+    // When we get a result
+    function gotResult(error, results) {
         // If there is an error
         if (error) {
-          console.error(error);
-          return;
+            console.error(error);
+            return;
         }
         // The results are in an array ordered by confidence.
         // console.log(results[0]);
         label = results[0].label;
         // Classify again!
         classifyVideo();
-      }
-    </script>
+    }
+</script>
 
 </body>
 </html>
