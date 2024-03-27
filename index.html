@@ -7,6 +7,33 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@latest/lib/p5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@latest/lib/addons/p5.dom.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/ml5@latest/dist/ml5.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        center {
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #666;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
 <center>
@@ -14,9 +41,10 @@
         <img src="logo.png" alt="Okul Logosu" width="100">
         <h1>ELAZIĞ LİSESİ YAPAY ZEKA TAKIMI</h1>
         <p>KOLON KANSERİNE ERKEN TEŞHİS İÇİN YAPAY ZEKA TABANLI DESTEK SİSTEMİ</p>
+        <p>Lütfen cihazınızın kamerasını tahminde bulunacağınız görüntüye tutunuz.</p>
     </div>
 </center>
-<p>Lütfen cihazınızın kamerasını tahminde bulunacağınız görüntüye tutunuz.</p>
+
 <script type="text/javascript">
     // Classifier Variable
     let classifier;
@@ -82,6 +110,5 @@
         classifyVideo();
     }
 </script>
-
 </body>
 </html>
